@@ -1,0 +1,39 @@
+digraph
+{
+graph [ordering = "out"]
+v0 [label = "Father dad"];
+v1 [label = "VAR DEC"];
+v1 -> v0;
+v2 [label = "CLASS 
+VAR FEILD"];
+v2 -> v1;
+v3 [label = "int foo"];
+v4 [label = "INT(5)"];
+v5 [label = "return"];
+v5 -> v4;
+v6 [label = "STMT
+LIST
+"];
+v6 -> v5;
+v7 [label = "funcDec"];
+v7 -> v3;
+v7 -> v6;
+v8 [label = "CLASS 
+FUNC FEILD"];
+v8 -> v7;
+v9 [label = "CLASS FEILD
+LIST
+"];
+v9 -> v8;
+v10 [label = "CLASS FEILD
+LIST
+"];
+v10 -> v2;
+v10 -> v9;
+v11 [label = "class Father "];
+v11 -> v10;
+v12 [label = "dec"];
+v12 -> v11;
+v13 [label = "program"];
+v13 -> v12;
+}
