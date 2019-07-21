@@ -1,0 +1,31 @@
+class IntList
+{
+    int head;
+    IntList tail;
+}
+
+
+void main()
+{
+    IntList a := new IntList;
+    IntList b := new IntList;
+    IntList c := new IntList;
+    IntList d := new IntList;
+
+    a.head := 34;
+    b.head := 70;
+    c.head := 92;
+    d.head := 96;
+
+    a.tail := b;
+    b.tail := c;
+    c.tail := d;
+    d.tail := nil;
+
+    
+    while (1)
+    {
+        PrintInt(a.head);
+        a := a.tail;
+    }
+}

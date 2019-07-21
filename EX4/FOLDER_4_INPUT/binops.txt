@@ -1,0 +1,10 @@
+int main()
+{
+    int a := 32000;
+    int b := 1000;
+    
+    if (a / b > 0)
+    {
+        PrintInt(a / b);
+    }	
+}

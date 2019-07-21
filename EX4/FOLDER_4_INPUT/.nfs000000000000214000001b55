@@ -1,0 +1,22 @@
+array IntArray = int[]
+array Mat      = IntArray[]
+
+void main()
+{
+
+    int i:=0;
+    
+    IntArray arr := new int[3];
+    arr[0] := 72 ; 
+    arr[1] := 73 ; 
+    arr[2] := 74 ; 
+    
+    IntArray arr2:= arr;
+
+
+   
+    while(i<3){
+        PrintInt(arr2[i]);
+        i:=i+1;    
+    }
+}

@@ -1,0 +1,297 @@
+.data
+string_access_violation: .asciiz "Access Violation"
+string_illegal_div_by_0: .asciiz "Illegal Division By Zero"
+string_invalid_ptr_dref: .asciiz "Invalid Pointer Dereference"
+.text
+main:
+	addi $fp,$sp,40
+	j IsPrime_0End
+IsPrime_0:
+	li $t0,2
+	addi $sp,$sp,-4
+	addi $t1,$fp,-4
+	sw $t0,0($t1)
+	li $t0,2
+	addi $sp,$sp,-4
+	addi $t1,$fp,-8
+	sw $t0,0($t1)
+Label_1_while_start:
+	addi $t0,$fp,-4
+	lw $t0,0($t0)
+	addi $t1,$fp,0
+	lw $t1,0($t1)
+	blt $t0,$t1,Label_11_AssignOne
+	bge $t0,$t1,Label_12_AssignZero
+Label_11_AssignOne:
+	li $t0,1
+	j Label_10_end
+Label_12_AssignZero:
+	li $t0,0
+	j Label_10_end
+Label_10_end:
+	li $t1,1
+	bne $t0,$t1,Label_0_while_end
+	li $t0,2
+	addi $t1,$fp,-8
+	sw $t0,0($t1)
+Label_3_while_start:
+	addi $t0,$fp,-8
+	lw $t0,0($t0)
+	addi $t1,$fp,0
+	lw $t1,0($t1)
+	blt $t0,$t1,Label_14_AssignOne
+	bge $t0,$t1,Label_15_AssignZero
+Label_14_AssignOne:
+	li $t0,1
+	j Label_13_end
+Label_15_AssignZero:
+	li $t0,0
+	j Label_13_end
+Label_13_end:
+	li $t1,1
+	bne $t0,$t1,Label_2_while_end
+	li $t0,1
+	addi $t1,$fp,-4
+	lw $t1,0($t1)
+	addi $t2,$fp,-8
+	lw $t5,0($t2)
+	li $t3,32767
+	li $t4,-32768
+	mult $t1,$t5
+	mflo $t2
+	blt $t3,$t2,Label_17_up_overflow
+	bge $t4,$t2,Label_18_down_overflow
+	j Label_19_no_overflow
+Label_17_up_overflow:
+	li $t1,32767
+	j Label_16_end
+Label_18_down_overflow:
+	li $t1,-32768
+	j Label_16_end
+Label_19_no_overflow:
+	mult $t1,$t5
+	mflo $t1
+	j Label_16_end
+Label_16_end:
+	addi $t2,$fp,0
+	lw $t2,0($t2)
+	beq $t1,$t2,Label_21_AssignOne
+	bne $t1,$t2,Label_22_AssignZero
+Label_21_AssignOne:
+	li $t1,1
+	j Label_20_end
+Label_22_AssignZero:
+	li $t1,0
+	j Label_20_end
+Label_20_end:
+	bne $t1,$t0,Label_4_if_end
+Label_5_if_true:
+	li $t0,0
+	move $v0, $t0
+	jr $ra
+Label_4_if_end:
+	addi $t0,$fp,-8
+	lw $t0,0($t0)
+	li $t1,1
+	li $t3,32767
+	li $t4,-32768
+	add $t2,$t0,$t1
+	blt $t3,$t2,Label_24_up_overflow
+	bge $t4,$t2,Label_25_down_overflow
+	j Label_26_no_overflow
+Label_24_up_overflow:
+	li $t0,32767
+	j Label_23_end
+Label_25_down_overflow:
+	li $t0,-32768
+	j Label_23_end
+Label_26_no_overflow:
+	add $t0,$t0,$t1
+	j Label_23_end
+Label_23_end:
+	addi $t1,$fp,-8
+	sw $t0,0($t1)
+	j Label_3_while_start
+Label_2_while_end:
+	addi $t0,$fp,-4
+	lw $t0,0($t0)
+	li $t2,1
+	li $t4,32767
+	li $t1,-32768
+	add $t3,$t0,$t2
+	blt $t4,$t3,Label_28_up_overflow
+	bge $t1,$t3,Label_29_down_overflow
+	j Label_30_no_overflow
+Label_28_up_overflow:
+	li $t0,32767
+	j Label_27_end
+Label_29_down_overflow:
+	li $t0,-32768
+	j Label_27_end
+Label_30_no_overflow:
+	add $t0,$t0,$t2
+	j Label_27_end
+Label_27_end:
+	addi $t1,$fp,-4
+	sw $t0,0($t1)
+	j Label_1_while_start
+Label_0_while_end:
+	li $t0,1
+	move $v0, $t0
+	jr $ra
+IsPrime_0End:
+	j PrintPrimes_0End
+PrintPrimes_0:
+	addi $t0,$fp,0
+	lw $t0,0($t0)
+	addi $sp,$sp,-4
+	addi $t1,$fp,-4
+	sw $t0,0($t1)
+Label_7_while_start:
+	addi $t0,$fp,-4
+	lw $t0,0($t0)
+	addi $t1,$fp,4
+	lw $t4,0($t1)
+	li $t5,1
+	li $t2,32767
+	li $t3,-32768
+	add $t1,$t4,$t5
+	blt $t2,$t1,Label_32_up_overflow
+	bge $t3,$t1,Label_33_down_overflow
+	j Label_34_no_overflow
+Label_32_up_overflow:
+	li $t1,32767
+	j Label_31_end
+Label_33_down_overflow:
+	li $t1,-32768
+	j Label_31_end
+Label_34_no_overflow:
+	add $t1,$t4,$t5
+	j Label_31_end
+Label_31_end:
+	blt $t0,$t1,Label_36_AssignOne
+	bge $t0,$t1,Label_37_AssignZero
+Label_36_AssignOne:
+	li $t0,1
+	j Label_35_end
+Label_37_AssignZero:
+	li $t0,0
+	j Label_35_end
+Label_35_end:
+	li $t1,1
+	bne $t0,$t1,Label_6_while_end
+	li $t0,1
+	addi $sp,$sp,-32
+	sw $t0, 0($sp)
+	sw $t1, 4($sp)
+	sw $t2, 8($sp)
+	sw $t3, 12($sp)
+	sw $t4, 16($sp)
+	sw $t5, 20($sp)
+	sw $t6, 24($sp)
+	sw $t7, 28($sp)
+	addi $sp,$sp,-4
+	sw $ra, 0($sp)
+	addi $sp,$sp,-4
+	sw $fp, 0($sp)
+	addi $sp,$sp,-4
+	addi $t1,$fp,-4
+	lw $t1,0($t1)
+	sw $t1, 0($sp)
+	move $fp,$sp
+	jal IsPrime_0
+	move $sp,$fp
+	lw $t0, 12($sp)
+	lw $t1, 16($sp)
+	lw $t2, 20($sp)
+	lw $t3, 24($sp)
+	lw $t4, 28($sp)
+	lw $t5, 32($sp)
+	lw $t6, 36($sp)
+	lw $t7, 40($sp)
+	move $t1, $v0
+	addi $sp,$sp,4
+	lw $fp,0($sp)
+	addi $sp,$sp,4
+	lw $ra,0($sp)
+	addi $sp,$sp,4
+	addi $sp,$sp,32
+	bne $t1,$t0,Label_8_if_end
+Label_9_if_true:
+	addi $t0,$fp,-4
+	lw $t0,0($t0)
+	move $a0,$t0
+	li $v0,1
+	syscall
+	li $a0, 32
+	li $v0, 11
+	syscall
+Label_8_if_end:
+	addi $t0,$fp,-4
+	lw $t0,0($t0)
+	li $t1,1
+	li $t3,32767
+	li $t4,-32768
+	add $t2,$t0,$t1
+	blt $t3,$t2,Label_39_up_overflow
+	bge $t4,$t2,Label_40_down_overflow
+	j Label_41_no_overflow
+Label_39_up_overflow:
+	li $t0,32767
+	j Label_38_end
+Label_40_down_overflow:
+	li $t0,-32768
+	j Label_38_end
+Label_41_no_overflow:
+	add $t0,$t0,$t1
+	j Label_38_end
+Label_38_end:
+	addi $t1,$fp,-4
+	sw $t0,0($t1)
+	j Label_7_while_start
+Label_6_while_end:
+	move $t0, $zero
+	move $v0, $t0
+	jr $ra
+PrintPrimes_0End:
+main_0:
+	addi $sp,$sp,-32
+	sw $t0, 0($sp)
+	sw $t1, 4($sp)
+	sw $t2, 8($sp)
+	sw $t3, 12($sp)
+	sw $t4, 16($sp)
+	sw $t5, 20($sp)
+	sw $t6, 24($sp)
+	sw $t7, 28($sp)
+	addi $sp,$sp,-4
+	sw $ra, 0($sp)
+	addi $sp,$sp,-4
+	sw $fp, 0($sp)
+	addi $sp,$sp,-8
+	li $t0,2
+	sw $t0, 0($sp)
+	li $t0,100
+	sw $t0, 4($sp)
+	move $fp,$sp
+	jal PrintPrimes_0
+	move $sp,$fp
+	lw $t0, 16($sp)
+	lw $t1, 20($sp)
+	lw $t2, 24($sp)
+	lw $t3, 28($sp)
+	lw $t4, 32($sp)
+	lw $t5, 36($sp)
+	lw $t6, 40($sp)
+	lw $t7, 44($sp)
+	move $t0, $v0
+	addi $sp,$sp,8
+	lw $fp,0($sp)
+	addi $sp,$sp,4
+	lw $ra,0($sp)
+	addi $sp,$sp,4
+	addi $sp,$sp,32
+	j End
+End:
+	li $v0,10
+	syscall

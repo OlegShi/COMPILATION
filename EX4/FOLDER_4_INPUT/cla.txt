@@ -1,0 +1,20 @@
+class Integer2
+{  
+
+    int a2:=9777;
+}
+
+class Integer extends Integer2
+{  
+    void fu(){
+      PrintInt(999);
+    }
+    int a1:=3777;
+    int a3:=5777;
+}
+
+void main()
+{ 
+    Integer i := new Integer;   
+    PrintInt(i.a2);   
+}

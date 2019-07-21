@@ -1,0 +1,55 @@
+.data
+string_access_violation: .asciiz "Access Violation"
+string_illegal_div_by_0: .asciiz "Illegal Division By Zero"
+string_invalid_ptr_dref: .asciiz "Invalid Pointer Dereference"
+.text
+main:
+	addi $fp,$sp,40
+	li Temp_0,4
+	addi Temp_10,$fp,-4
+	sw Temp_0,0(Temp_10)
+	li Temp_1,5
+	addi Temp_11,$fp,-8
+	sw Temp_1,0(Temp_11)
+	addi Temp_12,$fp,-4
+	lw Temp_3,0(Temp_12)
+	addi Temp_13,$fp,-8
+	lw Temp_4,0(Temp_13)
+	li Temp_15,32767
+	div Temp_3,Temp_4
+	mflo Temp_14
+	blt Temp_15,Temp_14,Label_3_overflow
+	bge Temp_15,Temp_14,Label_4_no_overflow
+Label_3_overflow:
+	li Temp_2,32767
+	j Label_2_end
+Label_4_no_overflow:
+	div Temp_3,Temp_4
+	mflo Temp_2
+	j Label_2_end
+Label_2_end:
+	move $a0,Temp_2
+	li $v0,4
+	syscall
+	li Temp_5,1
+	addi Temp_16,$fp,-12
+	lw Temp_7,0(Temp_16)
+	addi Temp_17,$fp,-16
+	lw Temp_8,0(Temp_17)
+	beq Temp_7,Temp_8,Label_6_AssignOne
+	bne Temp_7,Temp_8,Label_7_AssignZero
+Label_6_AssignOne:
+	li Temp_6,1
+	j Label_5_end
+Label_7_AssignZero:
+	li Temp_6,0
+	j Label_5_end
+Label_5_end:
+	bne Temp_6,Temp_5,Label_0_if_end
+Label_1_if_true:
+	li Temp_9,6
+	addi Temp_18,$fp,-16
+	sw Temp_9,0(Temp_18)
+Label_0_if_end:
+	li $v0,10
+	syscall

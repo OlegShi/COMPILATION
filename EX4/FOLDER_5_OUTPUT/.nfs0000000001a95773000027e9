@@ -1,0 +1,155 @@
+.data
+string_access_violation: .asciiz "Access Violation"
+string_illegal_div_by_0: .asciiz "Illegal Division By Zero"
+string_invalid_ptr_dref: .asciiz "Invalid Pointer Dereference"
+.text
+main:
+	addi $fp,$sp,40
+	j IsPrime_0End
+IsPrime_0:
+	li $t0,2
+	addi $sp,$sp,-4
+	addi $t1,$fp,-4
+	sw $t0,0($t1)
+	li $t0,1
+	addi $sp,$sp,-4
+	move $v0, $t0
+	jr $ra
+IsPrime_0End:
+	j PrintPrimes_0End
+PrintPrimes_0:
+	li $t0,2
+	addi $sp,$sp,-4
+	addi $t1,$fp,-8
+	sw $t0,0($t1)
+Label_1_while_start:
+	addi $t0,$fp,-8
+	lw $t0,0($t0)
+	li $t1,4
+	blt $t0,$t1,Label_5_AssignOne
+	bge $t0,$t1,Label_6_AssignZero
+Label_5_AssignOne:
+	li $t0,1
+	j Label_4_end
+Label_6_AssignZero:
+	li $t0,0
+	j Label_4_end
+Label_4_end:
+	li $t1,1
+	bne $t0,$t1,Label_0_while_end
+	li $t0,1
+	addi $sp,$sp,-32
+	sw $t0, 0($sp)
+	sw $t1, 4($sp)
+	sw $t2, 8($sp)
+	sw $t3, 12($sp)
+	sw $t4, 16($sp)
+	sw $t5, 20($sp)
+	sw $t6, 24($sp)
+	sw $t7, 28($sp)
+	addi $sp,$sp,-4
+	sw $ra, 0($sp)
+	addi $sp,$sp,-4
+	sw $fp, 0($sp)
+	addi $sp,$sp,-4
+	addi $t1,$fp,-8
+	lw $t1,0($t1)
+	sw $t1, 0($sp)
+	move $fp,$sp
+	jal IsPrime_0
+	move $sp,$fp
+	lw $t0, 12($sp)
+	lw $t1, 16($sp)
+	lw $t2, 20($sp)
+	lw $t3, 24($sp)
+	lw $t4, 28($sp)
+	lw $t5, 32($sp)
+	lw $t6, 36($sp)
+	lw $t7, 40($sp)
+	move $t1, $v0
+	addi $sp,$sp,4
+	lw $fp,0($sp)
+	addi $sp,$sp,4
+	lw $ra,0($sp)
+	addi $sp,$sp,4
+	addi $sp,$sp,32
+	bne $t1,$t0,Label_2_if_end
+Label_3_if_true:
+	addi $t0,$fp,-8
+	lw $t0,0($t0)
+	move $a0,$t0
+	li $v0,1
+	syscall
+	li $a0, 32
+	li $v0, 11
+	syscall
+Label_2_if_end:
+	addi $t0,$fp,-8
+	lw $t0,0($t0)
+	li $t4,1
+	li $t2,32767
+	li $t3,-32768
+	add $t1,$t0,$t4
+	blt $t2,$t1,Label_8_up_overflow
+	bge $t3,$t1,Label_9_down_overflow
+	j Label_10_no_overflow
+Label_8_up_overflow:
+	li $t0,32767
+	j Label_7_end
+Label_9_down_overflow:
+	li $t0,-32768
+	j Label_7_end
+Label_10_no_overflow:
+	add $t0,$t0,$t4
+	j Label_7_end
+Label_7_end:
+	addi $t1,$fp,-8
+	sw $t0,0($t1)
+	j Label_1_while_start
+Label_0_while_end:
+	addi $sp,$sp,-4
+	move $t0, $zero
+	move $v0, $t0
+	jr $ra
+PrintPrimes_0End:
+main_0:
+	addi $sp,$sp,-32
+	sw $t0, 0($sp)
+	sw $t1, 4($sp)
+	sw $t2, 8($sp)
+	sw $t3, 12($sp)
+	sw $t4, 16($sp)
+	sw $t5, 20($sp)
+	sw $t6, 24($sp)
+	sw $t7, 28($sp)
+	addi $sp,$sp,-4
+	sw $ra, 0($sp)
+	addi $sp,$sp,-4
+	sw $fp, 0($sp)
+	addi $sp,$sp,-8
+	li $t0,2
+	sw $t0, 0($sp)
+	li $t0,4
+	sw $t0, 4($sp)
+	move $fp,$sp
+	jal PrintPrimes_0
+	move $sp,$fp
+	lw $t0, 16($sp)
+	lw $t1, 20($sp)
+	lw $t2, 24($sp)
+	lw $t3, 28($sp)
+	lw $t4, 32($sp)
+	lw $t5, 36($sp)
+	lw $t6, 40($sp)
+	lw $t7, 44($sp)
+	move $t0, $v0
+	addi $sp,$sp,8
+	lw $fp,0($sp)
+	addi $sp,$sp,4
+	lw $ra,0($sp)
+	addi $sp,$sp,4
+	addi $sp,$sp,32
+	j End
+End:
+	li $v0,10
+	syscall

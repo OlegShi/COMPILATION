@@ -1,0 +1,16 @@
+array IntArray = int[]
+
+void main()
+{
+
+   
+    IntArray arr := new int[3];
+    arr[0] := 72 ; 
+    arr[1] := 40 ; 
+    arr[2] := 37 ; 
+    PrintInt(arr[0]);
+    PrintInt(arr[1]);
+    PrintInt(arr[2]);
+   
+    
+}

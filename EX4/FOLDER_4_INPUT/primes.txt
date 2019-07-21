@@ -1,0 +1,36 @@
+int main()
+{
+    int p := 2;
+    int end :=100;
+    
+    while (end+1 > p)
+    {
+        
+        int isprime := 1;
+        int i := 2;
+        
+        
+        while (i<p)
+        {
+            int j := 2;
+            while (j<i+1)
+            {               
+                if (i*j = p)
+                {
+                     isprime := 0;
+                }
+                j := j+1;
+            }
+            i := i+1;
+        }
+    
+    
+        if (isprime)
+        {
+            PrintInt(p);
+        }
+        
+         p := p+1;
+    }
+		
+}

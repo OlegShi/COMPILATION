@@ -1,0 +1,12 @@
+class String
+{  
+    string a1:="asdfg";
+}
+
+void main()
+{ 
+    String s := new String;   
+    PrintString(s.a1);  
+    s.a1 := "zxcv"; 
+    PrintString(s.a1);  
+}

@@ -1,0 +1,33 @@
+/***********/
+/* PACKAGE */
+/***********/
+package IR;
+
+/*******************/
+/* GENERAL IMPORTS */
+/*******************/
+
+/*******************/
+/* PROJECT IMPORTS */
+/*******************/
+import TEMP.*;
+import MIPS.*;
+
+public class IRcommand_set_void extends IRcommand
+{
+	TEMP temp;
+
+	
+	public IRcommand_set_void(TEMP temp)
+	{
+		this.temp = temp;
+	}
+	
+	/***************/
+	/* MIPS me !!! */
+	/***************/
+	public void MIPSme()
+	{
+		//sir_MIPS_a_lot.getInstance().
+	}
+}

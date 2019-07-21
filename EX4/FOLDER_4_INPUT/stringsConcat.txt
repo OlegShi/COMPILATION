@@ -1,0 +1,10 @@
+int main()
+{
+	string s := "Hey";
+	string b := "Jude";
+       
+
+	PrintString(s+b);
+
+}
+

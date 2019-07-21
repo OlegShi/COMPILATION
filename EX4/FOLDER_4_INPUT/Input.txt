@@ -1,0 +1,11 @@
+int a := 7;
+int a1 := 5;
+int a2 := 5;
+
+int main()
+{
+    PrintInt(a);
+    PrintInt(a1);
+    PrintInt(a2);
+}
+
