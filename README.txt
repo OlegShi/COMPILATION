@@ -1,4 +1,4 @@
-# COMPILATION
+#COMPILATION
 Java implementation of a compiler to an invented object oriented language called Poseidon.
 implemented:
 - lexical scanner based on the open source toolJFlex.
